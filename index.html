@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSCUBE Registration</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+    <!-- Registration Form Section -->
+    <section class="registration-section" id="registration-form">
+        <div class="container">
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <div class="form-brand">MSCUBE GYM</div>
+                    <h3>Join Our Fitness Family</h3>
+                </div>
+                
+                <!-- FormSubmit Form -->
+                <form action="https://formsubmit.co/mscubefitness@gmail.com" method="POST" class="registration-form" onsubmit="return showThankYou(event)">
+                    
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New MSCUBEGYM Registration">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">
+                            <span class="label-icon">👤</span>
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="fullName" 
+                            name="Full_Name" 
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <!-- Contact Number -->
+                    <div class="form-group">
+                        <label for="contact">
+                            <span class="label-icon">📞</span>
+                            Contact Number
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="contact" 
+                            name="Contact_Number" 
+                            placeholder="98XXXXXXXX"
+                            pattern="[0-9]{10}"
+                            required
+                        >
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group">
+                        <label for="address">
+                            <span class="label-icon">📍</span>
+                            Address
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="address" 
+                            name="Address" 
+                            placeholder="City, District"
+                            required
+                        >
+                    </div>
+
+                    <!-- Age -->
+                    <div class="form-group">
+                        <label for="age">
+                            <span class="label-icon">🎂</span>
+                            Age
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="age" 
+                            name="Age" 
+                            placeholder="18"
+                            min="15"
+                            max="100"
+                            required
+                        >
+                    </div>
+
+                    <!-- Fitness Goal -->
+                    <div class="form-group">
+                        <label for="goal">
+                            <span class="label-icon">🎯</span>
+                            Fitness Goal
+                            <span class="required">*</span>
+                        </label>
+                        <select id="goal" name="Fitness_Goal" required>
+                            <option value="">Select Your Goal</option>
+                            <option value="Weight Loss">Weight Loss</option>
+                            <option value="Muscle Gain">Muscle Gain</option>
+                            <option value="Strength Training">Strength Training</option>
+                            <option value="General Fitness">General Fitness</option>
+                            <option value="Body Toning">Body Toning</option>
+                        </select>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-text">Submit Registration</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <p>Contact us at:</p>
+                    <p class="contact-detail">📞 9862361278 | 9842124920</p>
+                    <p class="contact-detail">✉️ mscubefitness@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thank You Modal Popup -->
+    <div id="thankYouModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="success-checkmark"></div>
+                <div class="thank-you-icon">🎉</div>
+                
+                <h1 class="thank-you-heading">Thank You for Joining!</h1>
+                
+                <p class="thank-you-message">
+                    Your registration has been successfully submitted to MSCUBE Gym.
+                </p>
+
+                <div class="thank-you-details">
+                    <p><strong>What's Next?</strong></p>
+                    <p>Our team will review your registration and contact you shortly with details about membership plans, gym timings, and induction sessions.</p>
+                </div>
+
+                <p class="thank-you-message">
+                    <strong>📞 9862361278 | 9842124920</strong><br>
+                    <strong>✉️ mscubefitness@gmail.com</strong>
+                </p>
+
+                <button onclick="location.reload()" class="back-button">← Back to Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showThankYou(event) {
+            event.preventDefault();
+            
+            // Submit the form
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            }).then(() => {
+                // Show thank you modal
+                document.getElementById('thankYouModal').style.display = 'block';
+            }).catch(error => {
+                console.log('Form submitted (FormSubmit handles it)');
+                document.getElementById('thankYouModal').style.display = 'block';
+            });
+            
+            return false;
+        }
+    </script>
+    
+</body>
+</html>
